@@ -1,1 +1,1953 @@
-ttyyyyyy
+<!DOCTYPE html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>数学問題</title>
+
+<style>
+
+body{
+
+  font-family:sans-serif;
+
+  background:#f5f5f5;
+
+  padding:16px
+
+}
+
+button{
+
+  padding:18px 26px;
+
+  font-size:18px;
+
+  border-radius:14px;
+
+  margin:12px 0;
+
+  width:100%
+
+}
+
+.box{
+
+  background:#fff;
+
+  padding:14px;
+
+  margin:12px 0;
+
+  border-radius:12px
+
+}
+
+input{
+
+  width:160px;
+
+  font-size:16px
+
+}
+
+.correct{color:green;font-weight:bold}
+
+.wrong{color:red;font-weight:bold}
+  
+</style>
+
+</head>
+
+<body>
+
+<h2>📘 数学問題</h2>
+
+
+<div id="problems"></div>
+
+<script>
+
+function r(min,max){
+
+  return Math.floor(Math.random()*(max-min+1))+min
+
+}
+
+function sign(){
+
+  return Math.random()<0.5 ? '+' : '-'
+
+}
+
+let answerQ1 = null;
+
+function generateQ1(){
+
+  // r k r k r
+
+  let a = r(1,9) * (Math.random()<0.5 ? 1 : -1);
+
+  let b = r(1,9);
+
+  let c = r(1,9);
+
+  let k1 = sign();
+
+  let k2 = sign();
+
+  let ans = a;
+
+  ans = (k1==='+' ? ans + b : ans - b);
+
+  ans = (k2==='+' ? ans + c : ans - c);
+
+  answerQ1 = ans;
+
+  document.getElementById("problems").innerHTML += `
+
+    <div class="box">
+
+      (1) ${a} ${k1} ${b} ${k2} ${c}<br><br>
+
+      答え：
+
+      <input id="ans1">
+
+      <span id="res1"></span>
+
+    </div>
+
+  `;
+
+}
+  
+  function checkQ1(){
+
+  let v = document.getElementById("ans1").value.trim();
+
+  let r = document.getElementById("res1");
+
+  if(v === String(answerQ1)){
+
+    r.textContent = "○ 正解";
+
+    r.className = "correct";
+
+    return true;
+
+  }else{
+
+    r.textContent = "× 正解：" + answerQ1;
+
+    r.className = "wrong";
+
+    return false;
+
+  }
+
+}
+
+
+</script>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>模試レベル数学（2）</title>
+
+<style>
+
+body{
+
+  font-family:sans-serif;
+
+  background:#f5f5f5;
+
+  padding:16px
+
+}
+
+button{
+
+  padding:18px 26px;
+
+  font-size:18px;
+
+  border-radius:14px;
+
+  margin:12px 0;
+
+  width:100%
+
+}
+
+.box{
+
+  background:#fff;
+
+  padding:14px;
+
+  margin:12px 0;
+
+  border-radius:12px
+
+}
+
+input{
+
+  width:160px;
+
+  font-size:16px
+
+}
+
+.correct{color:green;font-weight:bold}
+
+.wrong{color:red;font-weight:bold}
+
+</style>
+
+</head>
+
+<body>
+
+<h2></h2>
+
+<div id="problems"></div>
+
+<script>
+
+function r(min,max){
+
+  return Math.floor(Math.random()*(max-min+1))+min
+
+}
+
+function sign(){
+
+  return Math.random()<0.5 ? '+' : '-'
+
+}
+
+
+function mulDiv(){
+
+  return Math.random()<0.5 ? '×' : '÷'
+
+}
+
+let answerQ2 = null;
+
+function generateQ2(){
+
+  let a = r(11,40) * (Math.random()<0.5 ? 1 : -1);
+
+  let b, w;
+
+  w = mulDiv();
+
+  if(w === '÷'){
+
+    b = r(2,8);
+
+    a = a * b; // 必ず割り切れるように調整
+
+  }else{
+
+    b = r(2,8);
+
+  }
+
+  b = b * (Math.random()<0.5 ? 1 : -1);
+
+  let c = r(1,9);
+
+  let k = sign();
+
+  let calc = (w==='×') ? a*b : a/b;
+
+  let ans = (k==='+' ? calc + c : calc - c);
+
+  answerQ2 = ans;
+
+  document.getElementById("problems").innerHTML += `
+
+    <div class="box">
+
+      (2) ${a} ${w} ${b} ${k} ${c}<br><br>
+
+      答え：
+
+      <input id="ans2">
+
+      <span id="res2"></span>
+
+    </div>
+
+  `;
+
+}
+
+function checkQ2(){
+
+  let v = document.getElementById("ans2").value.trim();
+
+  let r2 = document.getElementById("res2");
+
+  if(v === String(answerQ2)){
+
+    r2.textContent = " ○ 正解";
+
+    r2.className = "correct";
+    
+    return true;
+
+  }else{
+
+    r2.textContent = " × 正解：" + answerQ2;
+
+    r2.className = "wrong";
+    
+    return false;
+
+  }
+
+}
+
+</script>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>模試レベル数学（3）</title>
+
+<style>
+
+body{
+
+  font-family:sans-serif;
+
+  background:#f5f5f5;
+
+  padding:16px
+
+}
+
+button{
+
+  padding:18px 26px;
+
+  font-size:18px;
+
+  border-radius:14px;
+
+  margin:12px 0;
+
+  width:100%
+
+}
+
+.box{
+
+  background:#fff;
+
+  padding:14px;
+
+  margin:12px 0;
+
+  border-radius:12px
+
+}
+
+input{
+
+  width:160px;
+
+  font-size:16px
+
+}
+
+.correct{
+
+  color:green;
+
+  font-weight:bold
+
+}
+
+.wrong{
+
+  color:red;
+
+  font-weight:bold
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2></h2>
+
+<div id="problems"></div>
+
+<script>
+
+function rand(min,max){
+
+  return Math.floor(Math.random()*(max-min+1))+min;
+
+}
+
+let answerQ3 = null;
+
+function generateQ3(){
+
+  let big, base, exp, valu
+
+  while(true){
+
+    big = rand(11,40);        // 大きい数
+
+    base = rand(2,9);         // 底
+
+    exp  = rand(2,4);         // 指数
+
+    value = Math.pow(base, exp);
+
+    divisor = rand(2,9);      // 割る数（2〜9）
+
+    sign = Math.random()<0.5 ? '+' : '-';
+
+    // 割り切れる & 変な形を排除
+
+    if(
+
+      value % divisor === 0 &&
+
+      divisor !== Math.pow(base, exp-1)
+
+    ){
+
+      break;
+
+    }
+
+  }
+
+  let calc = value / divisor;
+
+  answerQ3 = (sign === '+') ? big + calc : big - calc;
+
+  document.getElementById("problems").innerHTML += `
+
+    <div class="box">
+
+      (3) ${big} ${sign} ${base}<sup>${exp}</sup> ÷ ${divisor}<br><br>
+
+      答え：
+
+      <input id="a3">
+
+      <span id="r3"></span>
+
+    </div>
+
+  `;
+
+}
+
+function checkQ3(){
+
+   let v = document.getElementById("a3").value.trim();
+
+   let r = document.getElementById("r3");
+
+  if(v === String(answerQ3)){
+
+    r.textContent = " ○ 正解";
+
+    r.className = "correct";
+    
+    return true;
+
+  }else{
+
+    r.textContent = " × 正解：" + answerQ3;
+
+    r.className = "wrong";
+    
+    return false;
+
+  }
+
+}
+
+</script>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>模試レベル数学（4）</title>
+
+<style>
+
+body{
+
+  font-family:sans-serif;
+
+  background:#f5f5f5;
+
+  padding:16px
+
+}
+
+button{
+
+  padding:18px 26px;
+
+  font-size:18px;
+
+  border-radius:14px;
+
+  margin:12px 0;
+
+  width:100%
+
+}
+
+.box{
+
+  background:#fff;
+
+  padding:14px;
+
+  margin:12px 0;
+
+  border-radius:12px
+
+}
+
+input{
+
+  width:180px;
+
+  font-size:16px
+
+}
+
+.frac{
+
+  display:inline-block;
+
+  text-align:center;
+
+  vertical-align:middle
+
+}
+
+.frac .top{
+
+  border-bottom:1px solid #000;
+
+  display:block;
+
+  padding:0 6px
+
+}
+
+.frac .bottom{
+
+  display:block
+
+}
+
+.correct{
+
+  color:green;
+
+  font-weight:bold
+
+}
+
+.wrong{
+
+  color:red;
+
+  font-weight:bold
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2></h2>
+
+<div id="problems"></div>
+
+<script>
+
+function rand(min,max){
+
+  return Math.floor(Math.random()*(max-min+1))+min;
+
+}
+
+function sign(){
+
+  return Math.random()<0.5 ? '+' : '-';
+
+}
+
+let answerQ4 = null;
+
+function generateQ4(){
+
+  let a,b,den,mul,k;
+
+  while(true){
+
+    a = rand(2,9);        // rx
+
+    b = rand(1,9);        // r
+
+    den = rand(2,9);      // 分母の r
+
+    mul = den * rand(2,4); // 分母の倍数
+
+    k = sign();
+
+    // 約分不可チェック
+
+    if(
+
+      a % den !== 0 &&
+
+       b % den !== 0
+
+    ){
+
+      break;
+
+    }
+
+  }
+
+  // 計算後の答え
+
+  // ((ax ± b) / den) × mul
+
+  let coef = a * mul / den;
+
+  let cons = b * mul / den;
+
+  answerQ4 = k === '+'
+
+    ? `${coef}x+${cons}`
+
+    : `${coef}x-${cons}`;
+
+  document.getElementById("problems").innerHTML += `
+
+    <div class="box">
+
+      (4)
+
+      <span class="frac">
+
+        <span class="top">${a}x ${k} ${b}</span>
+
+        <span class="bottom">${den}</span>
+
+      </span>
+
+      × ${mul}
+
+      <br><br>
+
+      答え：
+
+      <input id="a4" placeholder="例：6x+12">
+
+      <span id="r4"></span>
+
+    </div>
+
+  `;
+
+}
+
+function checkQ4(){
+
+  let v = document.getElementById("a4").value.replace(/\s/g,'');
+
+  let r = document.getElementById("r4");
+
+  if(v === answerQ4){
+
+    r.textContent = " ○ 正解";
+
+    r.className = "correct";
+    
+    return true;
+
+  }else{
+
+    r.textContent = " × 正解：" + answerQ4;
+
+    r.className = "wrong";
+    
+    return false;
+
+  }
+
+}
+
+</script>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>模試レベル数学（5）</title>
+
+<style>
+
+body{font-family:sans-serif;background:#f5f5f5;padding:16px}
+
+button{padding:18px 26px;font-size:18px;border-radius:14px;margin:12px 0;width:100%}
+
+.box{background:#fff;padding:14px;margin:12px 0;border-radius:12px}
+
+input{width:200px;font-size:16px}
+
+.correct{color:green;font-weight:bold}
+
+.wrong{color:red;font-weight:bold}
+
+</style>
+
+</head>
+
+<body>
+
+<h2></h2>
+
+<div id="problems"></div>
+
+<script>
+
+function rand(min,max){
+
+  return Math.floor(Math.random()*(max-min+1))+min;
+
+}
+
+function sign(){
+
+  return Math.random()<0.5 ? '+' : '-';
+
+}
+
+let answerQ5 = null;
+
+function generateQ5(){
+
+  let a = rand(1,9);
+
+  let b = rand(1,9);
+
+  let c = rand(1,9);
+
+  let d = rand(1,9);
+
+  let e = rand(1,9);
+
+  let f = rand(1,9);
+
+  let k1 = sign();
+
+  let k2 = sign();
+
+  let k3 = sign();
+
+  let k4 = sign();
+
+  let k5 = sign();
+
+  let xCoef = a + (k3==='+' ? d : -d);
+
+  let yCoef = (k1==='+' ? b : -b) + (k4==='+' ? e : -e);
+
+  let constant = (k2==='+' ? c : -c) + (k5==='+' ? f : -f);
+
+  let ans = '';
+
+  if(xCoef !== 0){
+
+    ans += (xCoef===1?'x':xCoef===-1?'-x':xCoef+'x');
+
+  }
+
+  if(yCoef !== 0){
+
+    ans += (ans && yCoef>0?'+':'');
+
+    ans += (yCoef===1?'y':yCoef===-1?'-y':yCoef+'y');
+
+  }
+
+  if(constant !== 0){
+
+    ans += (ans && constant>0?'+':'');
+
+    ans += constant;
+
+  }
+
+  answerQ5 = ans;
+
+  document.getElementById("problems").innerHTML += `
+
+    <div class="box">
+
+      (5) ${a}x ${k1} ${b}y ${k2} ${c} ${k3} ${d}x ${k4} ${e}y ${k5} ${f}<br><br>
+
+      答え：<input id="a5">
+
+      <span id="r5"></span>
+
+    </div>
+
+  `;
+
+}
+
+function checkQ5(){
+
+  let v = document.getElementById("a5").value.replace(/\s/g,'');
+
+  let r = document.getElementById("r5");
+
+  if(v === answerQ5){
+
+    r.textContent = " ○ 正解";
+
+    r.className = "correct";
+    
+    return true;
+
+  }else{
+
+    r.textContent = " × 正解：" + answerQ5;
+
+    r.className = "wrong";
+    
+    return false;
+
+  }
+
+}
+
+</script>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>模試レベル数学（6）</title>
+
+<style>
+
+body{font-family:sans-serif;background:#f5f5f5;padding:16px}
+
+button{padding:18px 26px;font-size:18px;border-radius:14px;margin:12px 0;width:100%}
+
+.box{background:#fff;padding:14px;margin:12px 0;border-radius:12px}
+
+input{width:160px;font-size:16px}
+
+.correct{color:green;font-weight:bold}
+
+.wrong{color:red;font-weight:bold}
+
+</style>
+
+</head>
+
+<body>
+
+<h2></h2>
+
+<div id="problems"></div>
+
+<script>
+
+function rand(min,max){
+
+  return Math.floor(Math.random()*(max-min+1))+min;
+
+}
+
+function sign(){
+
+  return Math.random()<0.5 ? '+' : '-';
+
+}
+
+let answerQ6 = null;
+
+function generateQ6(){
+
+  let r1 = rand(2,9);
+
+  let r2 = rand(2,9);
+
+  let r3 = rand(2,9);
+
+  let r4 = rand(2,9);
+
+  let r5 = rand(2,9);
+
+  let k1 = sign();
+
+  let k2 = sign();
+
+  let m;
+
+  do{
+
+    m = -rand(2,9);
+
+  }while(m === -1);
+
+  // 展開後の係数計算
+
+  let ax = r1 * r2;
+
+  let ay = r1 * (k1 === '+' ? r3 : -r3);
+
+  let bx = m * r4;
+
+  let by = m * (k2 === '+' ? r5 : -r5);
+
+  let xCoef = ax + bx;
+
+  let yCoef = ay + by;
+
+  let xSign = xCoef >= 0 ? '' : '-';
+
+  let ySign = yCoef >= 0 ? '+' : '-';
+
+  answerQ6 =
+
+    `${xSign}${Math.abs(xCoef)}x ${ySign} ${Math.abs(yCoef)}y`;
+
+  document.getElementById("problems").innerHTML += `
+
+    <div class="box">
+
+      (6) ${r1}(${r2}x ${k1} ${r3}y) ${m}(${r4}x ${k2} ${r5}y)<br><br>
+
+      答え：<input id="a6">
+
+      <span id="r6"></span>
+
+    </div>
+
+  `;
+
+}
+
+function checkQ6(){
+
+  let v = document.getElementById("a6").value.replace(/\s/g,'');
+
+  let r = document.getElementById("r6");
+
+  if(v === answerQ6.replace(/\s/g,'')){
+
+    r.textContent = " ○ 正解";
+
+    r.className = "correct";
+    
+    return true;
+
+  }else{
+
+    r.textContent = " × 正解：" + answerQ6;
+
+    r.className = "wrong";
+    
+    return false;
+
+  }
+
+}
+
+</script>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>模試レベル数学（7）</title>
+
+<style>
+
+body{font-family:sans-serif;background:#f5f5f5;padding:16px}
+
+button{padding:18px 26px;font-size:18px;border-radius:14px;margin:12px 0;width:100%}
+
+.box{background:#fff;padding:14px;margin:12px 0;border-radius:12px}
+
+input{width:220px;font-size:16px}
+
+.correct{color:green;font-weight:bold}
+
+.wrong{color:red;font-weight:bold}
+
+</style>
+
+</head>
+
+<body>
+
+<h2></h2>
+
+<div id="problems"></div>
+
+<script>
+
+function rand(min,max){
+
+  return Math.floor(Math.random()*(max-min+1))+min;
+
+}
+
+let answerQ7 = "";
+
+function generateQ7(){
+
+  const a = rand(2,9);
+
+  const b = rand(2,9);
+
+  const r = rand(2,6);
+
+  const i = Math.random()<0.5 ? 2 : 3;
+
+  const expL = rand(2,3); // 左の指数
+
+  const expR = rand(2,3); // 右の指数
+
+  // 左は x に指数、右は y に指数
+
+  const coefNum = a * b;
+
+  const coefDen = Math.pow(r, i);
+
+  const xExp = expL + 1 - i;
+
+  const yExp = 1 + expR - i;
+
+  // 約分
+
+  function gcd(x,y){ return y ? gcd(y, x%y) : x; }
+
+  const g = gcd(coefNum, coefDen);
+
+  const num = coefNum / g;
+
+  const den = coefDen / g;
+
+  let ans = "";
+
+  if(num !== 1) ans += num;
+
+  if(xExp > 0) ans += "x" + (xExp>1 ? `<sup>${xExp}</sup>` : "");
+
+  if(yExp > 0) ans += "y" + (yExp>1 ? `<sup>${yExp}</sup>` : "");
+
+  if(ans === "") ans = "1";
+
+  if(den !== 1) ans += "/" + den;
+
+  answerQ7 = ans;
+
+  document.getElementById("problems").innerHTML += `
+
+    <div class="box">
+
+      (7)
+
+      ${a}x<sup>${expL}</sup>y
+
+      ÷ (−${r}xy)<sup>${i}</sup>
+
+      × ${b}xy<sup>${expR}</sup>
+
+      <br><br>
+
+      答え：<input id="a7">
+
+      <span id="r7"></span>
+
+    </div>
+
+  `;
+
+}
+
+function checkQ7(){
+
+  const v = document.getElementById("a7").value.trim();
+
+  const r = document.getElementById("r7");
+
+  if(v === answerQ7){
+
+    r.innerHTML = " ○ 正解";
+
+    r.className = "correct";
+    
+    return true;
+
+  }else{
+
+    r.innerHTML = " × 正解：" + answerQ7;
+
+    r.className = "wrong";
+    
+    return false;
+
+  }
+
+}
+
+</script>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>模試レベル数学（8）</title>
+
+<style>
+
+body{font-family:sans-serif;background:#f5f5f5;padding:16px}
+
+button{padding:18px 26px;font-size:18px;border-radius:14px;margin:12px 0;width:100%}
+
+.box{background:#fff;padding:14px;margin:12px 0;border-radius:12px}
+
+input{width:180px;font-size:16px}
+
+.correct{color:green;font-weight:bold}
+
+.wrong{color:red;font-weight:bold}
+
+.frac{display:inline-block;text-align:center;vertical-align:middle}
+
+.frac .top{border-bottom:1px solid #000;display:block;padding:0 6px}
+
+.frac .bottom{display:block;padding:0 6px}
+
+</style>
+
+</head>
+
+<body>
+
+<h2></h2>
+
+<div id="problems"></div>
+
+<script>
+
+function rand(min,max){
+
+  return Math.floor(Math.random()*(max-min+1))+min;
+
+}
+
+function sign(){
+
+  return Math.random()<0.5 ? '+' : '-';
+
+}
+
+function gcd(a,b){
+
+  return b===0 ? a : gcd(b, a%b);
+
+}
+
+let answerQ8 = "";
+
+function generateQ8(){
+
+  let a,b,c,d,e,f;
+
+  let k1 = sign();
+
+  let k2 = sign();
+
+  let k3 = sign();
+
+  // 約分できないように調整
+
+  while(true){
+
+    a = rand(2,15);
+
+    b = rand(2,15);
+
+    c = rand(2,15);
+
+    d = rand(2,15);
+
+    e = rand(2,15);
+
+    f = rand(2,15);
+
+    if(gcd(a,c)===1 && gcd(b,c)===1 && gcd(d,f)===1 && gcd(e,f)===1){
+
+      break;
+
+    }
+
+  }
+
+  // 通分後の係数計算
+
+  let lx = a*f*(k1==='+'?1:-1);
+
+  let ly = b*f*(k2==='+'?1:-1);
+
+  let rx = d*c*(k3==='+'?1:-1);
+
+  let ry = e*c;
+
+  let X = lx + rx;
+
+  let Y = ly + ry;
+
+  let D = c*f;
+
+  // 約分
+
+  let g = gcd(Math.abs(X), gcd(Math.abs(Y), D));
+
+  X/=g; Y/=g; D/=g;
+
+  answerQ8 = `(${X}x${Y>=0?'+':''}${Y}y)/${D}`;
+
+  document.getElementById("problems").innerHTML += `
+
+    <div class="box">
+
+      (8)
+
+      <span class="frac">
+
+        <span class="top">${a}x ${k1} ${b}y</span>
+
+        <span class="bottom">${c}</span>
+
+      </span>
+
+      ${k3}
+
+      <span class="frac">
+
+        <span class="top">${d}x ${k2} ${e}y</span>
+
+        <span class="bottom">${f}</span>
+
+      </span>
+
+      <br><br>
+
+      答え：<input id="a8">
+
+      <span id="r8"></span>
+
+    </div>
+
+  `;
+
+}
+
+function checkQ8(){
+
+  let v = document.getElementById("a8").value.replace(/\s/g,'');
+
+  let r = document.getElementById("r8");
+
+  if(v === answerQ8){
+
+    r.textContent = " ○ 正解";
+
+    r.className = "correct";
+    
+    return true;
+
+  }else{
+
+    r.textContent = " × 正解：" + answerQ8;
+
+    r.className = "wrong";
+    
+    return false;
+
+  }
+
+}
+
+</script>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>模試レベル数学（9）</title>
+
+<style>
+
+body{font-family:sans-serif;background:#f5f5f5;padding:16px}
+
+button{padding:18px 26px;font-size:18px;border-radius:14px;margin:12px 0;width:100%}
+
+.box{background:#fff;padding:14px;margin:12px 0;border-radius:12px}
+
+input{width:160px;font-size:16px}
+
+.correct{color:green;font-weight:bold}
+
+.wrong{color:red;font-weight:bold}
+
+</style>
+
+</head>
+
+<body>
+
+<h2></h2>
+
+<div id="problems"></div>
+
+<script>
+
+function rand(min,max){
+
+  return Math.floor(Math.random()*(max-min+1))+min;
+
+}
+
+function sign(){
+
+  return Math.random()<0.5 ? '+' : '-';
+
+}
+
+let answerQ9 = null;
+
+function generateQ9(){
+
+  let xAns = rand(2,6); // 解は整数
+
+  let a = rand(20,70);
+
+  let b = rand(10,40);
+
+  let c = rand(5,20);
+
+  let s1 = sign();
+
+  let s2 = sign();
+
+  // ax ± b = cx ± d の形を作る
+
+  let leftConst  = (s1 === '+') ? b : -b;
+
+  let rightConst = (s2 === '+') ? (a*xAns + leftConst - c*xAns) : -(a*xAns + leftConst - c*xAns);
+
+  answerQ9 = xAns;
+
+  document.getElementById("problems").innerHTML += `
+
+    <div class="box">
+
+      (9) ${a}x ${s1} ${b} = ${c}x ${s2} ${Math.abs(rightConst)}<br><br>
+
+      答え：<input id="a9">
+
+      <span id="r9"></span>
+
+    </div>
+
+  `;
+
+}
+
+function checkQ9(){
+
+  let v = document.getElementById("a9").value.trim();
+
+  let r = document.getElementById("r9");
+
+  if(v === String(answerQ9)){
+
+    r.textContent = " ○ 正解";
+
+    r.className = "correct";
+    
+     return true;
+
+  }else{
+
+    r.textContent = " × 正解：x = " + answerQ9;
+
+    r.className = "wrong";
+    
+    return false;
+
+  }
+
+}
+
+</script>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>模試レベル数学（10）</title>
+
+<style>
+
+body{font-family:sans-serif;background:#f5f5f5;padding:16px}
+
+button{padding:18px 26px;font-size:18px;border-radius:14px;margin:12px 0;width:100%}
+
+.box{background:#fff;padding:14px;margin:12px 0;border-radius:12px}
+
+input{width:160px;font-size:16px}
+
+.correct{color:green;font-weight:bold}
+
+.wrong{color:red;font-weight:bold}
+
+.frac{
+
+  display:inline-block;
+
+  text-align:center;
+
+  vertical-align:middle;
+
+}
+
+.frac .top{
+
+  display:block;
+
+  border-bottom:1.5px solid #000;
+
+  padding:0 6px;
+
+}
+
+.frac .bottom{
+
+  display:block;
+
+  padding:0 6px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2></h2>
+
+<div id="problems"></div>
+
+<script>
+
+function rand(min,max){
+
+  return Math.floor(Math.random()*(max-min+1))+min;
+
+}
+
+let answerQ10 = null;
+
+function generateQ10(){
+
+  let a,b,c,d,e,x;
+
+  while(true){
+
+    x = rand(-9,9);
+
+    if(x===0) continue;
+
+    c = rand(2,9);
+
+    a = rand(2,9) * (Math.random()<0.5 ? -1 : 1);
+
+    d = rand(1,5) * (Math.random()<0.5 ? -1 : 1);
+
+    e = rand(-9,9);
+
+    b = c*(d*x + e) - a*x;
+
+    if(gcd(Math.abs(a),Math.abs(b))===1 && gcd(Math.abs(b),c)===1){
+
+      break;
+
+    }
+
+  }
+
+  answerQ10 = x;
+
+  document.getElementById("problems").innerHTML += `
+
+    <div class="box">
+
+      (10)<br><br>
+
+      <span class="frac">
+
+        <span class="top">
+
+          ${a}x ${b>=0?'+':''}${b}
+
+        </span>
+
+        <span class="bottom">
+
+          ${c}
+
+        </span>
+
+      </span>
+
+      ＝ ${d}x ${e>=0?'+':''}${e}
+
+      <br><br>
+
+      答え：<input id="a10">
+
+      <span id="r10"></span>
+
+    </div>
+
+  `;
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>模試レベル数学（11）</title>
+
+<style>
+
+body{font-family:sans-serif;background:#f5f5f5;padding:16px}
+
+button{padding:18px 26px;font-size:18px;border-radius:14px;margin:12px 0;width:100%}
+
+.box{background:#fff;padding:14px;margin:12px 0;border-radius:12px}
+
+input{width:180px;font-size:16px}
+
+.correct{color:green;font-weight:bold}
+
+.wrong{color:red;font-weight:bold}
+
+</style>
+
+</head>
+
+<body>
+
+<h2></h2>
+
+<div id="problems"></div>
+
+<script>
+
+function rand(min,max){
+
+  return Math.floor(Math.random()*(max-min+1))+min;
+
+}
+
+let ansX11 = null;
+
+let ansY11 = null;
+
+function generateQ11(){
+
+  // 解を先に決める（必ず整数）
+
+  let x = rand(-6,6);
+
+  let y = rand(-6,6);
+
+　if(x===0) x=2;
+
+  if(y===0) y=-3;
+
+  // 係数（加減法できるように）
+
+  let a = rand(2,6);
+
+  let b = rand(2,6);
+
+  let c = -a;
+
+  let d = rand(2,6);
+
+  // 定数項を計算
+
+  let r1 = a*x + b*y;
+
+  let r2 = c*x + d*y;
+
+  ansX11 = x;
+
+  ansY11 = y;
+
+  document.getElementById("problems").innerHTML += `
+
+    <div class="box">
+
+      (11) 次の連立方程式を解け（加減法）<br><br>
+
+      ${a}x ${b>=0?'+':''}${b}y = ${r1}<br>
+
+      ${c}x ${d>=0?'+':''}${d}y = ${r2}<br><br>
+
+      答え：x = <input id="x11"> , y = <input id="y11"><br><br>
+
+      <span id="r11"></span>
+
+    </div>
+
+  `;
+
+}
+
+function checkQ11(){
+
+  let vx = document.getElementById("x11").value.trim();
+
+  let vy = document.getElementById("y11").value.trim();
+
+  let r = document.getElementById("r11");
+
+  if(vx===String(ansX11) && vy===String(ansY11)){
+
+    r.textContent = " ○ 正解";
+
+    r.className = "correct";
+    
+    return true;
+
+  }else{
+
+    r.textContent = ` × 正解：x=${ansX11}, y=${ansY11}`;
+
+    r.className = "wrong";
+    
+    return false;
+
+  }
+
+}
+
+</script>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>模試レベル数学（12）</title>
+
+<style>
+
+body{font-family:sans-serif;background:#f5f5f5;padding:16px}
+
+button{padding:16px 24px;font-size:18px;border-radius:14px;width:100%;margin:12px 0}
+
+.box{background:#fff;padding:16px;border-radius:12px}
+
+input{width:120px;font-size:16px}
+
+.correct{color:green;font-weight:bold}
+
+.wrong{color:red;font-weight:bold}
+
+.eq{font-size:18px;margin:6px 0}
+
+</style>
+
+</head>
+
+<body>
+
+<h2></h2>
+
+<div id="problems"></div>
+
+<script>
+
+function rand(min,max){
+
+  return Math.floor(Math.random()*(max-min+1))+min;
+
+}
+
+let ansX = null;
+
+let ansY = null;
+
+function generateQ12(){
+
+  let a,b,c,d,x,y,e,f;
+
+  while(true){
+
+    // 解（整数）
+
+    x = rand(-5,5);
+
+    y = rand(-5,5);
+
+    if(x === 0 || y === 0) continue;
+
+    // 係数（難関校向け）
+
+    a = [7,9,11,13][rand(0,3)];
+
+    b = [4,8,9,14][rand(0,3)];
+
+    c = [5,11,13][rand(0,2)];
+
+    d = [7,9,14][rand(0,2)];
+
+    // すぐ消えないように
+
+    if(a*d === b*c) continue;
+
+    // 定数項を計算
+
+    e = a*x + b*y;
+
+    f = c*x + d*y;
+
+    break;
+
+  }
+
+  ansX = x;
+
+  ansY = y;
+
+  document.getElementById("problems").innerHTML += `
+
+    <div class="box">
+
+      <div class="eq">(12)</div>
+
+      <div class="eq">${a}x ${b>=0?'+':''}${b}y = ${e}</div>
+
+      <div class="eq">${c}x ${d>=0?'+':''}${d}y = ${f}</div>
+
+      <br>
+
+      x = <input id="ax">　
+
+      y = <input id="ay">
+
+      <br><br>
+
+      <div id="r12"></div>
+
+    </div>
+
+  `;
+
+}
+
+function checkQ12(){
+
+  let vx = document.getElementById("ax").value.trim();
+
+  let vy = document.getElementById("ay").value.trim();
+
+  let r = document.getElementById("r12");
+
+  if(vx === String(ansX) && vy === String(ansY)){
+
+    r.textContent = "○ 正解！";
+
+    r.className = "correct";
+    
+    return true;
+
+  }else{
+
+    r.textContent = `× 正解：x=${ansX}, y=${ansY}`;
+
+    r.className = "wrong";
+    
+    return false;
+
+  }
+
+}
+
+</script>
+
+</body>
+
+</html>
+
+<button id="btnStart" 
+        class="btn btn-start"
+        type="button"
+        onclick="startAll();
+                 startTimer();">問題を出す</button>
+
+<button id="btnCheck" 
+        class="btn btn-check"
+        type="button"
+        onclick="checkAll();
+                 stopTimer();" 
+        style="display:none">正解チェック</button>
+
+<button id="btnReset" 
+        class="btn btn-reset"
+        type="button"
+        onclick="resetAll()
+                 resetTimer();" 
+        style="display:none">リセット</button>
+
+<div id="problems"></div>
+
+<div id="score"></div>
+
+<div id="timerBox">06:00</div>
+
