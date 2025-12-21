@@ -1,0 +1,230 @@
+
+html, body {
+
+  margin: 0;
+
+  padding: 0;
+
+  min-height: 100vh;
+
+  background-color: #e6f2ff;
+
+}
+
+body {
+
+  background: lightsteelblue !important;
+
+}
+
+/* タイトル */
+
+h2{
+
+  text-align:center;
+
+  margin-bottom:12px;
+
+}
+
+/* 共通ボタン */
+
+.btn {
+
+  width: 100%;
+
+  padding: 16px;
+
+  border-radius: 14px;
+
+  border: none;
+
+  font-size: 18px;
+
+  font-weight: bold;
+
+  color: white;
+
+  transition: all 0.2s ease;
+
+}
+
+/* 問題を出す（青紫） */
+
+.btn-start {
+
+  background: linear-gradient(135deg, #6a5cff, #8a6cff);
+
+}
+
+/* 正解チェック（緑） */
+
+.btn-check {
+
+  background: linear-gradient(135deg, #3fcf8e, #5fe3a6);
+
+}
+
+/* リセット（赤） */
+
+.btn-reset {
+
+  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+
+}
+
+.btn:active {
+
+  transform: translateY(2px);
+
+}
+
+button:hover {
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 12px 24px rgba(79, 124, 255, 0.45);
+
+}
+
+button:active {
+
+  transform: translateY(0);
+
+  box-shadow: 0 6px 12px rgba(79, 124, 255, 0.3);
+
+}
+
+/* 問題カード */
+
+.box{
+
+  background:#ffffff;
+
+  padding:16px;
+
+  margin:14px 0;
+
+  border-radius:14px;
+
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+
+  font-size:18px;
+
+}
+
+/* 解答欄 */
+
+input{
+
+  width:140px;
+
+  padding:6px;
+
+  font-size:18px;
+
+  margin-top:6px;
+
+}
+
+/* 判定表示 */
+
+.correct{
+
+   display:block;
+
+  margin-top:8px;
+
+  color:#15803d;
+
+  background:#dcfce7;
+
+  padding:6px 10px;
+
+  border-radius:8px;
+
+  font-weight:bold;
+
+}
+
+.wrong{
+
+  display:block;
+
+  margin-top:8px;
+
+  color:#b91c1c;
+
+  background:#fee2e2;
+
+  padding:6px 10px;
+
+  border-radius:8px;
+
+  font-weight:bold;
+
+}
+
+/* 未回答 */
+
+.empty{
+
+  display:block;
+
+  margin-top:8px;
+
+  color:#92400e;
+
+  background:#fef3c7;
+
+  padding:6px 10px;
+
+  border-radius:8px;
+
+  font-weight:bold;
+
+}
+
+#timerBox {
+
+  position: fixed;
+
+  bottom: 5px;
+
+  left: 5px;      /* ← 追加 */
+
+  right: auto;     /* ← 右を無効化 */
+
+  width: 120px;
+
+  height: 48px;
+
+  background: #2c7be5;
+
+  color: white;
+
+  font-size: 20px;
+
+  font-weight: bold;
+
+  border-radius: 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+  z-index: 9999;
+
+}
+
+/* 残り1分になったら */
+
+#timerBox.timer-warning {
+
+  background: #e55353;   /* 箱全体が赤 */
+
+}
