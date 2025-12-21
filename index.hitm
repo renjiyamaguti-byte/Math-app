@@ -1957,3 +1957,6 @@ function checkQ12(){
 <!-- body の最後に JS 読み込み -->
 <script src="script.js"></script>
 
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2c7be5">
+
