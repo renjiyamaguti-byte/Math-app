@@ -1951,3 +1951,9 @@ function checkQ12(){
 
 <div id="timerBox">06:00</div>
 
+<!-- head 内に CSS 読み込み -->
+<link rel="stylesheet" href="style.css">
+
+<!-- body の最後に JS 読み込み -->
+<script src="script.js"></script>
+
