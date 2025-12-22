@@ -646,6 +646,9 @@ alert("sign:", typeof sign);
   let guard = 0;
 
 while (true) {
+
+alert("Q4 before while");
+  
   guard++;
   if (guard > 1000) {
     console.error("Q1 無限ループ防止");
@@ -663,6 +666,9 @@ while (true) {
     b % den !== 0
   ) {
     break;
+
+alert("Q4 while ok");
+    
   }
 }
   
