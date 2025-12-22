@@ -647,24 +647,20 @@ alert("sign:", typeof sign);
 
 alert("Q4 before while");
   
-while (true) {
-  
-  guard++;
-  if (guard > 1000) {
-    console.error("Q1 無限ループ防止");
-    break;
+let a, b, r, k;
+
+  while (true) {
+    a = rand(2, 9);   // xの係数
+    b = rand(1, 9);   // 定数項
+    r = rand(2, 9);   // 分母
+    k = sign();
+
+    // ★方法②：分子の係数だけチェック
+    if (a % r !== 0) {
+      break;
+    }
   }
 
-  a = rand(2,9);
-  b = rand(1,9);
-  den = rand(2,9);
-  mul = den * rand(2,4);
-  k = sign();
-
-  if(a % den !== 0){
-  break;
-  }
-}
 
   // 計算後の答え
 
