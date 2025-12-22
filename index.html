@@ -645,18 +645,15 @@ alert("sign:", typeof sign);
 alert("Q4 before while");
   
 let a, b, r, k;
+let guard = 0;
 
-  while (true) {
-    a = rand(2, 9);   // xの係数
-    b = rand(1, 9);   // 定数項
-    r = rand(2, 9);   // 分母
-    k = sign();
-
-    // ★方法②：分子の係数だけチェック
-    if (a % r !== 0) {
-      break;
-    }
-  }
+do {
+  a = rand(2, 9);
+  b = rand(1, 9);
+  r = rand(2, 9);
+  k = sign();
+  guard++;
+} while (a % r === 0 && guard < 50);
 alert("Q4 afterwhile");
 
   // 計算後の答え
