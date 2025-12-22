@@ -5,18 +5,29 @@ function startAll(){
   console.log("startAll 開始");
 
   document.getElementById("problems").innerHTML = "";
-
+  alert("Q1前");
   generateQ1();
+  alert("Q2前");
   generateQ2();
+  alert("Q3前");
   generateQ3();
+  alert("Q4前");
   generateQ4();
+  alert("Q5前");
   generateQ5();
+  alert("Q6前");
   generateQ6();
+  alert("Q7前");
   generateQ7();
+  alert("Q8前");
   generateQ8();
+  alert("Q9前");
   generateQ9();
+  alert("Q10前");
   generateQ10();
+  alert("Q11前");
   generateQ11();
+  alert("Q12前");
   generateQ12();
   
   document.getElementById("btnStart").style.display = "none";
