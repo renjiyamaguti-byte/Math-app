@@ -1,4 +1,4 @@
-alert("JS 読み込まれてる");
+alert("JS OK");
 
 function startAll(){
 
