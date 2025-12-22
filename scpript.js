@@ -1,3 +1,5 @@
+alert("JS 読み込まれてる");
+
 function startAll(){
 
   document.getElementById("problems").innerHTML = "";
