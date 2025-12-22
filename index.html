@@ -659,17 +659,10 @@ alert("sign:", typeof sign);
     // 約分不可チェック
 
     if(
-
-      a % den !== 0 &&
-
+      a % den !== 0 ||
       b % den !== 0
-
-    ){
-
-      alert("while 抜けた");
-
-      break;
-
+   ){
+  break;
     }
 
   }
