@@ -117,8 +117,6 @@ function updateTimer() {
 
 function startTimer() {
 
-  console.log("タイマー開始");
-
   stopTimer();           // 二重起動防止
 
   timeLeft = 360;
