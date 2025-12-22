@@ -642,13 +642,15 @@ function generateQ4(){
   alert("rand:", typeof rand);
 alert("sign:", typeof sign);
   let a, b, den, mul, k;
-  let safe = 0;
-
-while (safe < 100) {
-
-  alert("a=" + a + " den=" + den);
   
-  safe++;
+  let guard = 0;
+
+while (true) {
+  guard++;
+  if (guard > 1000) {
+    console.error("Q1 無限ループ防止");
+    break;
+  }
 
   a = rand(2,9);
   b = rand(1,9);
@@ -656,14 +658,12 @@ while (safe < 100) {
   mul = den * rand(2,4);
   k = sign();
 
-  if (a % den !== 0 && b % den !== 0) {
+  if (
+    a % den !== 0 &&
+    b % den !== 0
+  ) {
     break;
   }
-}
-
-// 保険（万一抜けなかったら）
-if (safe >= 100) {
-  den = 7;
 }
   
   alert("Q4-② 前半通過");
