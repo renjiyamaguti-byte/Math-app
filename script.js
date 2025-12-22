@@ -1,4 +1,4 @@
-alert("JS OK");
+
 
 function startAll(){
 
