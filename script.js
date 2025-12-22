@@ -2,7 +2,7 @@
 
 function startAll(){
 
-  document.getElementById("score").textContent = "startAll OK";
+  alert("startAll OK");
 
   document.getElementById("problems").innerHTML = "";
 
