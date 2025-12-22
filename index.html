@@ -648,8 +648,6 @@ alert("sign:", typeof sign);
 alert("Q4 before while");
   
 while (true) {
-
-
   
   guard++;
   if (guard > 1000) {
@@ -663,18 +661,10 @@ while (true) {
   mul = den * rand(2,4);
   k = sign();
 
-  if (
-    a % den !== 0 &&
-    b % den !== 0
-  ) {
-    break;
-
-alert("Q4 while ok");
-    
+  if(a % den !== 0){
+  break;
   }
 }
-  
-  alert("Q4-② 前半通過");
 
   // 計算後の答え
 
