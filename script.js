@@ -1,8 +1,8 @@
-
+console.log("script.js 読み込みOK");
 
 function startAll(){
 
-  alert("startAll OK");
+  console.log("startAll 開始");
 
   document.getElementById("problems").innerHTML = "";
 
