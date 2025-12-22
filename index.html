@@ -642,31 +642,27 @@ function generateQ4(){
   alert("rand:", typeof rand);
 alert("sign:", typeof sign);
 
-  let a,b,den,mul,k;
+  let safe = 0;
 
-  while(true){
+while (safe < 100) {
+  safe++;
 
-    a = rand(2,9);        // rx
+  a = rand(2,9);
+  b = rand(1,9);
+  den = rand(2,9);
+  mul = den * rand(2,4);
+  k = sign();
 
-    b = rand(1,9);        // r
-
-    den = rand(2,9);      // 分母の r
-
-    mul = den * rand(2,4); // 分母の倍数
-
-    k = sign();
-
-    // 約分不可チェック
-
-    if(
-      a % den !== 0 ||
-      b % den !== 0
-   ){
-  break;
-    }
-
+  if (a % den !== 0 && b % den !== 0) {
+    break;
   }
+}
 
+// 保険（万一抜けなかったら）
+if (safe >= 100) {
+  den = 7;
+}
+  
   alert("Q4-② 前半通過");
 
   // 計算後の答え
