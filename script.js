@@ -2,6 +2,8 @@
 
 function startAll(){
 
+  document.getElementById("score").textContent = "startAll OK";
+
   document.getElementById("problems").innerHTML = "";
 
   generateQ1();
