@@ -195,15 +195,15 @@ input{
 
   right: auto;     /* ← 右を無効化 */
 
-  width: 240px;
+  width: 480px;
 
-  height: 96px;
+  height: 192px;
 
   background: #2c7be5;
 
   color: white;
 
-  font-size: 40px;
+  font-size: 80px;
 
   font-weight: bold;
 
