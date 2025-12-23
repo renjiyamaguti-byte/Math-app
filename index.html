@@ -425,58 +425,37 @@ let answerQ3 = null;
 
 function generateQ3(){
 
-  let big, base, exp, valu
+  let big, base, exp, value, divisor, sign;
 
   while(true){
 
     big = rand(11,40);        // 大きい数
-
     base = rand(2,9);         // 底
-
     exp  = rand(2,4);         // 指数
-
     value = Math.pow(base, exp);
-
     divisor = rand(2,9);      // 割る数（2〜9）
-
     sign = Math.random()<0.5 ? '+' : '-';
 
     // 割り切れる & 変な形を排除
-
     if(
-
       value % divisor === 0 &&
-
       divisor !== Math.pow(base, exp-1)
-
     ){
-
       break;
-
     }
-
   }
 
   let calc = value / divisor;
-
   answerQ3 = (sign === '+') ? big + calc : big - calc;
 
   document.getElementById("problems").innerHTML += `
-
     <div class="box">
-
       (3) ${big} ${sign} ${base}<sup>${exp}</sup> ÷ ${divisor}<br><br>
-
       答え：
-
       <input id="a3">
-
       <span id="r3"></span>
-
     </div>
-
   `;
-
 }
 
 function checkQ3(){
@@ -635,75 +614,54 @@ function sign(){
 
 let answerQ4 = null;
 
+
+function checkQ4(){
 function generateQ4(){
 
-  alert("Q4 start");
+  let a,b,den,mul,k;
+  let guard = 0;
 
-  alert("rand:", typeof rand);
-alert("sign:", typeof sign);
+  while(true){
+    guard++;
+    if(guard > 50){
+      
+      break;
+    }
 
-alert("Q4 before while");
-  
-let a, b, r, k;
-let guard = 0;
+    a = rand(2,9);
+    b = rand(1,9);
+    den = rand(2,9);
+    mul = den * rand(2,4);
+    k = sign();
 
-do {
-  a = rand(2, 9);
-  b = rand(1, 9);
-  r = rand(2, 9);
-  k = sign();
-  guard++;
-} while (a % r === 0 && guard < 50);
-alert("Q4 afterwhile");
+    if (a % den !== 0 && b % den !== 0) {
+      break;
+    }
+  }
 
-  // 計算後の答え
-
-  // ((ax ± b) / den) × mul
 
   let coef = a * mul / den;
-
   let cons = b * mul / den;
 
   answerQ4 = k === '+'
-
     ? `${coef}x+${cons}`
-
     : `${coef}x-${cons}`;
 
   document.getElementById("problems").innerHTML += `
-
     <div class="box">
-
       (4)
-
       <span class="frac">
-
         <span class="top">${a}x ${k} ${b}</span>
-
         <span class="bottom">${den}</span>
-
       </span>
-
       × ${mul}
-
       <br><br>
-
       答え：
-
-      <input id="a4" placeholder="例：6x+12">
-
+      <input id="a4">
       <span id="r4"></span>
-
     </div>
-
   `;
-
-  alert("Q4 end");
-
 }
-
-function checkQ4(){
-
   let v = document.getElementById("a4").value.replace(/\s/g,'');
 
   let r = document.getElementById("r4");
