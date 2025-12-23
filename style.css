@@ -228,3 +228,8 @@ input{
   background: #e55353;   /* 箱全体が赤 */
 
 }
+
+.app{
+  max-width:480px;
+  margin:0 auto;
+}
