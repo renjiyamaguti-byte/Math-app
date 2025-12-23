@@ -189,9 +189,9 @@ input{
 
   position: fixed;
 
-  bottom: 5px;
+  bottom: 0px;
 
-  left: 5px;      /* ← 追加 */
+  left: 0px;      /* ← 追加 */
 
   right: auto;     /* ← 右を無効化 */
 
