@@ -6,7 +6,7 @@ function startAll(){
   
   generateQ2();
   
-  generateQ3();
+  
   
   generateQ4();
   
