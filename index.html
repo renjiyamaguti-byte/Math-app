@@ -76,6 +76,11 @@ function r(min,max){
 }
 
 function sign(){
+  return Math.floor(Math.random()*(max-min+1))+min
+
+}
+
+function sign(){
 
   return Math.random()<0.5 ? '+' : '-'
 
@@ -615,16 +620,15 @@ function sign(){
 let answerQ4 = null;
 
 
-function checkQ4(){
 function generateQ4(){
 
   let a,b,den,mul,k;
   let guard = 0;
 
+
   while(true){
     guard++;
     if(guard > 50){
-      
       break;
     }
 
@@ -662,6 +666,9 @@ function generateQ4(){
     </div>
   `;
 }
+
+function checkQ4(){
+
   let v = document.getElementById("a4").value.replace(/\s/g,'');
 
   let r = document.getElementById("r4");
@@ -873,7 +880,7 @@ input{width:160px;font-size:16px}
 </style>
 
 </head>
-
+  
 <body>
 
 <h2></h2>
@@ -1081,7 +1088,7 @@ function generateQ7(){
   if(den !== 1) ans += "/" + den;
 
   answerQ7 = ans;
-
+  
   document.getElementById("problems").innerHTML += `
 
     <div class="box">
@@ -1211,7 +1218,7 @@ function generateQ8(){
   let k3 = sign();
 
   // 約分できないように調整
-
+  
   while(true){
 
     a = rand(2,15);
@@ -1369,7 +1376,6 @@ function rand(min,max){
 }
 
 function sign(){
-
   return Math.random()<0.5 ? '+' : '-';
 
 }
@@ -1380,7 +1386,7 @@ function generateQ9(){
 
   let xAns = rand(2,6); // 解は整数
 
-  let a = rand(20,70);
+  let a = rand(5,20);
 
   let b = rand(10,40);
 
@@ -1520,6 +1526,7 @@ let answerQ10 = null;
 
 function generateQ10(){
 
+
   let a,b,c,d,e,x;
 
   while(true){
@@ -1584,7 +1591,38 @@ function generateQ10(){
 
 }
 
+  function checkQ10(){
+
+  let v = document.getElementById("a10").value.trim();
+
+  let r = document.getElementById("r10");
+
+  if(v === String(answerQ10)){
+
+    r.textContent = " ○ 正解";
+
+    r.className = "correct";
+    
+    return true;
+
+  }else{
+
+    r.textContent = " × 正解：x = " + answerQ10;
+
+    r.className = "wrong";
+    
+    return false;
+
+  }
+
 }
+
+function gcd(a,b){
+
+  return b===0 ? a : gcd(b, a%b);
+
+}
+
 
 </script>
 
@@ -1909,3 +1947,8 @@ function checkQ12(){
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#2c7be5">
 
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js");
+}
+</script>
