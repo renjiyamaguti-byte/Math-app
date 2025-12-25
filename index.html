@@ -1385,43 +1385,24 @@ function sign(){
 let answerQ9 = null;
 
 function generateQ9(){
-
-  let xAns = rand(2,6); // 解は整数
-
+  let xAns = rand(2,6);
   let a = rand(5,20);
-
+  let c = rand(5,20);
   let b = rand(10,40);
 
-  let c = rand(5,20);
-
-  let s1 = sign();
-
-  let s2 = sign();
-
-  // ax ± b = cx ± d の形を作る
-
-  let leftConst  = (s1 === '+') ? b : -b;
-
-  let rightConst = (s2 === '+') ? (a*xAns + leftConst - c*xAns) : -(a*xAns + leftConst - c*xAns);
+  // ax + b = cx + d を満たすdを作る
+  let d = a*xAns + b - c*xAns; // ← これなら必ず整数xAnsが解
 
   answerQ9 = xAns;
 
   document.getElementById("problems").innerHTML += `
-
     <div class="box">
-
-      (9) ${a}x ${s1} ${b} = ${c}x ${s2} ${Math.abs(rightConst)}<br><br>
-
+      (9) ${a}x + ${b} = ${c}x + ${d}<br><br>
       答え：<input id="a9">
-
       <span id="r9"></span>
-
     </div>
-
   `;
-
 }
-
 function checkQ9(){
 
   let v = document.getElementById("a9").value.trim();
