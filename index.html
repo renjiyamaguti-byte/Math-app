@@ -1213,40 +1213,32 @@ function generateQ8(){
 
   let a,b,c,d,e,f;
 
-  // 元の符号セット
   let k1 = sign(); // 左x
   let k2 = sign(); // 左y
-  let k3 = sign(); // 右の項全体の符号（+なら加算、-なら減算）
-
-  // 右側の x,y に別符号を持たせる ←★追加
+  let k3 = sign(); // + なら加算、-なら減算（右全体の前につく）
   let k4 = sign(); // 右x
   let k5 = sign(); // 右y
 
-  // 約分できないように調整
   while(true){
     a = rand(2,15); b = rand(2,15);
     c = rand(2,15); d = rand(2,15);
     e = rand(2,15); f = rand(2,15);
-    if(gcd(a,c)===1 && gcd(b,c)===1 && gcd(d,f)===1 && gcd(e,f)===1){
-      break;
-    }
+    if(gcd(a,c)===1 && gcd(b,c)===1 && gcd(d,f)===1 && gcd(e,f)===1) break;
   }
 
-  // 左の分子 (符号別)
+  // 左（通分）
   let lx = a*f*(k1==='+'?1:-1);
   let ly = b*f*(k2==='+'?1:-1);
 
-  // 右の分子 (符号別)
-  // k3が＋なら足す、−なら引く → -(右分子)を実装
-  let rx = d*c*(k4==='+'?1:-1) * (k3==='+'?1:-1);
-  let ry = e*c*(k5==='+'?1:-1) * (k3==='+'?1:-1);
+  // 右（通分）※ k3 が - のときは右項を丸ごと反転
+  let mul = (k3==='+'?1:-1);
+  let rx = d*c*(k4==='+'?1:-1) * mul;
+  let ry = e*c*(k5==='+'?1:-1) * mul;
 
   let X = lx + rx;
   let Y = ly + ry;
-
   let D = c*f;
 
-  // 約分
   let g = gcd(Math.abs(X), gcd(Math.abs(Y), D));
   X/=g; Y/=g; D/=g;
 
