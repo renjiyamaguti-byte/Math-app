@@ -1245,6 +1245,25 @@ function generateQ8(){
   let g = gcd(Math.abs(X), gcd(Math.abs(Y), D));
   X/=g; Y/=g; D/=g;
 
+  document.getElementById("problems").innerHTML += `
+    <div class="box">
+      (8)
+      <span class="frac">
+        <span class="top">${a}x ${k1} ${b}y</span>
+        <span class="bottom">${c}</span>
+      </span>
+      ${k3}
+      <span class="frac">
+        <span class="top">${d}x ${k4} ${e}y</span>
+        <span class="bottom">${f}</span>
+      </span>
+      <br><br>
+      答え：<input id="a8">
+      <span id="r8"></span>
+    </div>
+  `;
+}
+
   answerQ8 = `(${X}x${Y>=0?'+':''}${Y}y)/${D}`;
 function checkQ8(){
 
