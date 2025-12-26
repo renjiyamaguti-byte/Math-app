@@ -1212,38 +1212,44 @@ let answerQ8 = "";
 function generateQ8(){
 
   let a,b,c,d,e,f;
-  let k1 = sign(); // 左のx
-  let k2 = sign(); // 左のy
-  let k3 = sign(); // 右側の全体符号（ここ重要）
+  let k1 = sign(); // 左側xの符号
+  let k2 = sign(); // 左側yの符号
+  let k3 = sign(); // 右側式全体の符号
 
+  // 約分不可のランダム生成
   while(true){
-    a=rand(2,15); b=rand(2,15);
-    c=rand(2,15); d=rand(2,15);
-    e=rand(2,15); f=rand(2,15);
+    a = rand(2,15);
+    b = rand(2,15);
+    c = rand(2,15);
+    d = rand(2,15);
+    e = rand(2,15);
+    f = rand(2,15);
 
     if(gcd(a,c)===1 && gcd(b,c)===1 && gcd(d,f)===1 && gcd(e,f)===1) break;
   }
 
-  // 通分後の係数
-  let Lx = (k1==='+'? a:-a) * f;
-  let Ly = (k2==='+'? b:-b) * f;
+  // 左側の通分後
+  let Lx = (k1 === '+' ? a : -a) * f;
+  let Ly = (k2 === '+' ? b : -b) * f;
 
-  // ❗右側は符号をまとめて最後にかける
+  // 右側通分後（符号は式全体で最後に反映）
   let Rx = d * c;
   let Ry = e * c;
 
-  if(k3==='-'){
+  if(k3 === '-'){ // ←ここが今回一番重要
     Rx = -Rx;
     Ry = -Ry;
   }
 
   let X = Lx + Rx;
   let Y = Ly + Ry;
-  let D = c*f;
+  let D = c * f;
 
   // 約分
   let g = gcd(Math.abs(X), gcd(Math.abs(Y), D));
   X/=g; Y/=g; D/=g;
+
+  answerQ8 = `(${X}x${Y>=0?'+':''}${Y}y)/${D}`;
 
   document.getElementById("problems").innerHTML += `
     <div class="box">
@@ -1254,7 +1260,7 @@ function generateQ8(){
       </span>
       ${k3}
       <span class="frac">
-        <span class="top">${d}x ${k4} ${e}y</span>
+        <span class="top">${d}x ${k2} ${e}y</span>
         <span class="bottom">${f}</span>
       </span>
       <br><br>
