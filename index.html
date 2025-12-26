@@ -1212,12 +1212,11 @@ let answerQ8 = "";
 function generateQ8(){
 
   let a,b,c,d,e,f;
-
-  let k1 = sign(); // 左x
-  let k2 = sign(); // 左y
-  let k3 = sign(); // +なら加算、-なら右を反転
-  let k4 = sign(); // 右x
-  let k5 = sign(); // 右y
+  let k1 = sign(); // 左 x の符号
+  let k2 = sign(); // 左 y の符号
+  let k3 = sign(); // + or -（右全体に作用）
+  let k4 = sign(); // 右 x の符号
+  let k5 = sign(); // 右 y の符号
 
   while(true){
     a = rand(2,15); b = rand(2,15);
@@ -1226,23 +1225,23 @@ function generateQ8(){
     if(gcd(a,c)===1 && gcd(b,c)===1 && gcd(d,f)===1 && gcd(e,f)===1) break;
   }
 
-  // 左通分
-  let lx = a*f*(k1==='+'?1:-1);
-  let ly = b*f*(k2==='+'?1:-1);
+  // --- 左の通分 ---
+  let Lx = (k1==='+'?a:-a) * f;
+  let Ly = (k2==='+'?b:-b) * f;
 
-  // 右通分（まず自身の符号反映）
-  let rx = d*c*(k4==='+'?1:-1);
-  let ry = e*c*(k5==='+'?1:-1);
+  // --- 右の通分 ---
+  let Rx = (k4==='+'?d:-d) * c;
+  let Ry = (k5==='+'?e:-e) * c;
 
-  // k3が-なら右全体反転（減算）
-  if(k3==='-'){ 
-    rx = -rx;
-    ry = -ry;
+  // k3 が - の場合 右全体を反転
+  if(k3==='-'){
+    Rx = -Rx;
+    Ry = -Ry;
   }
 
-  let X = lx + rx;
-  let Y = ly + ry;
-  let D = c*f;
+  let X = Lx + Rx;
+  let Y = Ly + Ry;
+  let D = c * f;
 
   // 約分
   let g = gcd(Math.abs(X), gcd(Math.abs(Y), D));
@@ -1250,7 +1249,6 @@ function generateQ8(){
 
   answerQ8 = `(${X}x${Y>=0?'+':''}${Y}y)/${D}`;
 
-  // ⬇⬇ ここで表示 ⬇⬇
   document.getElementById("problems").innerHTML += `
     <div class="box">
       (8)
@@ -1269,7 +1267,6 @@ function generateQ8(){
     </div>
   `;
 }
-
   
 function checkQ8(){
 
