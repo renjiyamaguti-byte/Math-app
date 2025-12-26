@@ -1209,14 +1209,15 @@ function gcd(a,b){
 
 let answerQ8 = "";
 
-function generateQ8(){
+function generateQ8() {
 
   let a,b,c,d,e,f;
-  let k1 = sign(); // 左x符号
-  let k2 = sign(); // 左y符号
-  let k3 = (Math.random()<0.5?'+':'-'); // ← ここ重要！＋か−を明確に決める
-  let k4 = sign(); // 右x符号
-  let k5 = sign(); // 右y符号
+  // ±の決定
+  let k1 = sign(); 
+  let k2 = sign();
+  let k3 = (Math.random()<0.5?'+':'-'); 
+  let k4 = sign();
+  let k5 = sign();
 
   while(true){
     a=rand(2,15); b=rand(2,15);
@@ -1225,35 +1226,42 @@ function generateQ8(){
     if(gcd(a,c)===1 && gcd(b,c)===1 && gcd(d,f)===1 && gcd(e,f)===1) break;
   }
 
-  // 左（×右の分母 f）
-  let Lx = (k1==='+'?a:-a) * f;
-  let Ly = (k2==='+'?b:-b) * f;
+  // 🔥 ここで符号を数値に反映(表示と計算が一致するように)
+  let A = (k1==='+'?a:-a);
+  let B = (k2==='+'?b:-b);
+  let D1 = (k4==='+'?d:-d);
+  let E = (k5==='+'?e:-e);
 
-  // 右（×左の分母 c）
-  let Rx = (k4==='+'?d:-d) * c;
-  let Ry = (k5==='+'?e:-e) * c;
+  // 左通分
+  let Lx = A * f;
+  let Ly = B * f;
 
-  // ✨ 真ん中が−なら右だけ反転 ✨
-  if(k3 === '-'){
+  // 右通分
+  let Rx = D1 * c;
+  let Ry = E * c;
+
+  // 🔥 真ん中がマイナスなら右だけ反転
+  if(k3==='-'){
     Rx = -Rx;
     Ry = -Ry;
   }
 
   let X = Lx + Rx;
   let Y = Ly + Ry;
-  let D = c * f;
+  let D = c*f;
 
-  let g = gcd(Math.abs(X), gcd(Math.abs(Y),D));
+  let g=gcd(Math.abs(X),gcd(Math.abs(Y),D));
   X/=g; Y/=g; D/=g;
 
   answerQ8 = `(${X}x${Y>=0?'+':''}${Y}y)/${D}`;
 
+  // 🔥 表示に符号を正しく反映
   document.getElementById("problems").innerHTML += `
   <div class="box">
     (8)
-    <span class="frac"><span class="top">${a}x ${k1} ${b}y</span><span class="bottom">${c}</span></span>
-    <b>${k3}</b>  <!-- ✨ 表示もここで使う ✨ -->
-    <span class="frac"><span class="top">${d}x ${k4} ${e}y</span><span class="bottom">${f}</span></span>
+    <span class="frac"><span class="top">${A}x ${B>=0?'+':''}${B}y</span><span class="bottom">${c}</span></span>
+    <b>${k3}</b>
+    <span class="frac"><span class="top">${D1}x ${E>=0?'+':''}${E}y</span><span class="bottom">${f}</span></span>
     <br><br>
     答え：<input id="a8"><span id="r8"></span>
   </div>`;
