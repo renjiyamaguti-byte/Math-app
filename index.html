@@ -1214,7 +1214,7 @@ function generateQ8(){
   let a,b,c,d,e,f;
   let k1 = sign(); // 左x符号
   let k2 = sign(); // 左y符号
-  let k3 = sign(); // ＋ or －
+  let k3 = (Math.random()<0.5?'+':'-'); // ← ここ重要！＋か−を明確に決める
   let k4 = sign(); // 右x符号
   let k5 = sign(); // 右y符号
 
@@ -1222,20 +1222,19 @@ function generateQ8(){
     a=rand(2,15); b=rand(2,15);
     c=rand(2,15); d=rand(2,15);
     e=rand(2,15); f=rand(2,15);
-    // 分母と数が被らず、簡単に割れすぎないための条件
     if(gcd(a,c)===1 && gcd(b,c)===1 && gcd(d,f)===1 && gcd(e,f)===1) break;
   }
 
-  // 🔻 左は ×右の分母f に修正
+  // 左（×右の分母 f）
   let Lx = (k1==='+'?a:-a) * f;
   let Ly = (k2==='+'?b:-b) * f;
 
-  // 🔻 右は ×左の分母c に修正
+  // 右（×左の分母 c）
   let Rx = (k4==='+'?d:-d) * c;
   let Ry = (k5==='+'?e:-e) * c;
 
-  // 🔻引き算の時だけ右側の符号反転（仕様OK）
-  if(k3==='-'){
+  // ✨ 真ん中が−なら右だけ反転 ✨
+  if(k3 === '-'){
     Rx = -Rx;
     Ry = -Ry;
   }
@@ -1253,7 +1252,7 @@ function generateQ8(){
   <div class="box">
     (8)
     <span class="frac"><span class="top">${a}x ${k1} ${b}y</span><span class="bottom">${c}</span></span>
-    ${k3}
+    <b>${k3}</b>  <!-- ✨ 表示もここで使う ✨ -->
     <span class="frac"><span class="top">${d}x ${k4} ${e}y</span><span class="bottom">${f}</span></span>
     <br><br>
     答え：<input id="a8"><span id="r8"></span>
