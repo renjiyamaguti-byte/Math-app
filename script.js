@@ -96,7 +96,7 @@ function resetAll(){
 
 let timer = null;
 
-let timeLeft = 600; // 10分
+let timeLeft = 540; // 9分
 
 function updateTimer() {
 
@@ -128,7 +128,7 @@ function startTimer() {
 
   stopTimer();           // 二重起動防止
 
-  timeLeft = 600;
+  timeLeft = 540;
 
   updateTimer();
 
@@ -166,7 +166,7 @@ function resetTimer() {
 
   stopTimer();       // 止める
 
-  timeLeft = 600;    // 10分に戻す
+  timeLeft = 540;    // 9分に戻す
 
   updateTimer();     // 表示更新
 
