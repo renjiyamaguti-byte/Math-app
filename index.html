@@ -1210,15 +1210,15 @@ function gcd(a,b){
 let answerQ8 = "";
 
 function generateQ8(){
+function generateQ8(){
 
   let a,b,c,d,e,f;
   let k1 = sign(); // 左x符号
   let k2 = sign(); // 左y符号
-  let k3 = sign(); // ＋ or －（式の間）
+  let k3 = sign(); // 真ん中の + / -
   let k4 = sign(); // 右x符号
   let k5 = sign(); // 右y符号
 
-  // 分母と係数の相性悪い組を避ける処理(問題として整った式にする)
   while(true){
     a=rand(2,15); b=rand(2,15);
     c=rand(2,15); d=rand(2,15);
@@ -1226,28 +1226,34 @@ function generateQ8(){
     if(gcd(a,c)===1 && gcd(b,c)===1 && gcd(d,f)===1 && gcd(e,f)===1) break;
   }
 
-  // --- 左項を通分 ---
-  let Lx = (k1==='+'? a : -a) * f;
-  let Ly = (k2==='+'? b : -b) * f;
+  // -------------------------
+  // 符号はすべて「最後に一回だけ適用する」方式
+  // -------------------------
 
-  // --- 右項符号処理を安全に一本化 ---
-  let op = (k3 === '+') ? 1 : -1;  // 加算=1, 減算=-1
+  let op = (k3 === '+') ? 1 : -1;  // 真ん中が + → 1 / - → -1
+  let sx1 = (k1 === '+') ? 1 : -1;
+  let sy1 = (k2 === '+') ? 1 : -1;
+  let sx2 = (k4 === '+') ? 1 : -1;
+  let sy2 = (k5 === '+') ? 1 : -1;
 
-  // 右項通分 & まとめて符号反転
-  let Rx = op * (k4==='+'? d : -d) * c;
-  let Ry = op * (k5==='+'? e : -e) * c;
+  // 左通分
+  let Lx = sx1 * a * f;
+  let Ly = sy1 * b * f;
 
-  // --- 計算結果 ---
+  // 右通分（符号は最後に op をまとめて掛ける）
+  let Rx = op * sx2 * d * c;
+  let Ry = op * sy2 * e * c;
+
   let X = Lx + Rx;
   let Y = Ly + Ry;
   let D = c * f;
 
+  // 約分
   let g = gcd(Math.abs(X), gcd(Math.abs(Y), D));
   X/=g; Y/=g; D/=g;
 
   answerQ8 = `(${X}x${Y>=0?'+':''}${Y}y)/${D}`;
 
-  // --- 表示 ---
   document.getElementById("problems").innerHTML += `
   <div class="box">
     (8)
