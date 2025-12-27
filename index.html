@@ -1215,11 +1215,11 @@ let answerQ8 = "";
 function generateQ8(){
 
   let a,b,c,d,e,f;
-  let k1 = sign(); // 左x
-  let k2 = sign(); // 左y
-  let k3 = sign(); // + or -
-  let k4 = sign(); // 右x
-  let k5 = sign(); // 右y
+  let k1 = sign(); // 左xの符号
+  let k2 = sign(); // 左yの符号
+  let k3 = sign(); // ＋ or － （真ん中）
+  let k4 = sign(); // 右xの符号
+  let k5 = sign(); // 右yの符号
 
   while(true){
     a=rand(2,15); b=rand(2,15);
@@ -1236,7 +1236,7 @@ function generateQ8(){
   let Rx = (k4==='+'?d:-d) * c;
   let Ry = (k5==='+'?e:-e) * c;
 
-  // 右の符号反転は中央 '-' の場合のみ
+  // 真ん中が-のときだけ右を丸ごと反転
   if(k3==='-'){
     Rx = -Rx;
     Ry = -Ry;
@@ -1244,22 +1244,22 @@ function generateQ8(){
 
   let X = Lx + Rx;
   let Y = Ly + Ry;
-  let D = c * f;
+  let D = c*f;
 
-  let g = gcd(Math.abs(X), gcd(Math.abs(Y), D));
+  let g = gcd(Math.abs(X), gcd(Math.abs(Y),D));
   X/=g; Y/=g; D/=g;
 
   answerQ8 = `(${X}x${Y>=0?'+':''}${Y}y)/${D}`;
 
   document.getElementById("problems").innerHTML += `
-    <div class="box">
-      (8)
-      <span class="frac"><span class="top">${a}x ${k1} ${b}y</span><span class="bottom">${c}</span></span>
-      ${k3}
-      <span class="frac"><span class="top">${d}x ${k4} ${e}y</span><span class="bottom">${f}</span></span>
-      <br><br>
-      答え：<input id="a8"><span id="r8"></span>
-    </div>`;
+  <div class="box">
+    (8)
+    <span class="frac"><span class="top">${k1==='-'?'-':''}${Math.abs(a)}x ${k2} ${Math.abs(b)}y</span><span class="bottom">${c}</span></span>
+    ${k3}
+    <span class="frac"><span class="top">${k4==='-'?'-':''}${Math.abs(d)}x ${k5} ${Math.abs(e)}y</span><span class="bottom">${f}</span></span>
+    <br><br>
+    答え：<input id="a8"><span id="r8"></span>
+  </div>`;
 }
   
 function checkQ8(){
