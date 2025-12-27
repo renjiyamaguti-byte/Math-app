@@ -1209,16 +1209,16 @@ function gcd(a,b){
 
 let answerQ8 = "";
 
-function generateQ8() {
+function generateQ8(){
 
   let a,b,c,d,e,f;
-  // ±の決定
-  let k1 = sign(); 
-  let k2 = sign();
-  let k3 = (Math.random()<0.5?'+':'-'); 
-  let k4 = sign();
-  let k5 = sign();
+  let k1 = sign(); // 左x符号
+  let k2 = sign(); // 左y符号
+  let k3 = sign(); // ＋ or －（式の間）
+  let k4 = sign(); // 右x符号
+  let k5 = sign(); // 右y符号
 
+  // 分母と係数の相性悪い組を避ける処理(問題として整った式にする)
   while(true){
     a=rand(2,15); b=rand(2,15);
     c=rand(2,15); d=rand(2,15);
@@ -1226,42 +1226,34 @@ function generateQ8() {
     if(gcd(a,c)===1 && gcd(b,c)===1 && gcd(d,f)===1 && gcd(e,f)===1) break;
   }
 
-  // 🔥 ここで符号を数値に反映(表示と計算が一致するように)
-  let A = (k1==='+'?a:-a);
-  let B = (k2==='+'?b:-b);
-  let D1 = (k4==='+'?d:-d);
-  let E = (k5==='+'?e:-e);
+  // --- 左項を通分 ---
+  let Lx = (k1==='+'? a : -a) * f;
+  let Ly = (k2==='+'? b : -b) * f;
 
-  // 左通分
-  let Lx = A * f;
-  let Ly = B * f;
+  // --- 右項符号処理を安全に一本化 ---
+  let op = (k3 === '+') ? 1 : -1;  // 加算=1, 減算=-1
 
-  // 右通分
-  let Rx = D1 * c;
-  let Ry = E * c;
+  // 右項通分 & まとめて符号反転
+  let Rx = op * (k4==='+'? d : -d) * c;
+  let Ry = op * (k5==='+'? e : -e) * c;
 
-  // 🔥 真ん中がマイナスなら右だけ反転
-  if(k3==='-'){
-    Rx = -Rx;
-    Ry = -Ry;
-  }
-
+  // --- 計算結果 ---
   let X = Lx + Rx;
   let Y = Ly + Ry;
-  let D = c*f;
+  let D = c * f;
 
-  let g=gcd(Math.abs(X),gcd(Math.abs(Y),D));
+  let g = gcd(Math.abs(X), gcd(Math.abs(Y), D));
   X/=g; Y/=g; D/=g;
 
   answerQ8 = `(${X}x${Y>=0?'+':''}${Y}y)/${D}`;
 
-  // 🔥 表示に符号を正しく反映
+  // --- 表示 ---
   document.getElementById("problems").innerHTML += `
   <div class="box">
     (8)
-    <span class="frac"><span class="top">${A}x ${B>=0?'+':''}${B}y</span><span class="bottom">${c}</span></span>
-    <b>${k3}</b>
-    <span class="frac"><span class="top">${D1}x ${E>=0?'+':''}${E}y</span><span class="bottom">${f}</span></span>
+    <span class="frac"><span class="top">${a}x ${k1} ${b}y</span><span class="bottom">${c}</span></span>
+    ${k3}
+    <span class="frac"><span class="top">${d}x ${k4} ${e}y</span><span class="bottom">${f}</span></span>
     <br><br>
     答え：<input id="a8"><span id="r8"></span>
   </div>`;
