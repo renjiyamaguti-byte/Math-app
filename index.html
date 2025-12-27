@@ -1209,14 +1209,17 @@ function gcd(a,b){
 
 let answerQ8 = "";
 
+// ---------------------------------------------
+// (8) 生成 - 計算処理修正版
+// ---------------------------------------------
 function generateQ8(){
 
   let a,b,c,d,e,f;
-  let k1 = sign(); // 左x符号
-  let k2 = sign(); // 左y符号
-  let k3 = sign(); // 真ん中の + / -
-  let k4 = sign(); // 右x符号
-  let k5 = sign(); // 右y符号
+  let k1 = sign(); // 左x
+  let k2 = sign(); // 左y
+  let k3 = sign(); // + or -
+  let k4 = sign(); // 右x
+  let k5 = sign(); // 右y
 
   while(true){
     a=rand(2,15); b=rand(2,15);
@@ -1225,43 +1228,38 @@ function generateQ8(){
     if(gcd(a,c)===1 && gcd(b,c)===1 && gcd(d,f)===1 && gcd(e,f)===1) break;
   }
 
-  // -------------------------
-  // 符号はすべて「最後に一回だけ適用する」方式
-  // -------------------------
+  // 左
+  let Lx = (k1==='+'?a:-a) * f;
+  let Ly = (k2==='+'?b:-b) * f;
 
-  let op = (k3 === '+') ? 1 : -1;  // 真ん中が + → 1 / - → -1
-  let sx1 = (k1 === '+') ? 1 : -1;
-  let sy1 = (k2 === '+') ? 1 : -1;
-  let sx2 = (k4 === '+') ? 1 : -1;
-  let sy2 = (k5 === '+') ? 1 : -1;
+  // 右
+  let Rx = (k4==='+'?d:-d) * c;
+  let Ry = (k5==='+'?e:-e) * c;
 
-  // 左通分
-  let Lx = sx1 * a * f;
-  let Ly = sy1 * b * f;
-
-  // 右通分（符号は最後に op をまとめて掛ける）
-  let Rx = op * sx2 * d * c;
-  let Ry = op * sy2 * e * c;
+  // 右の符号反転は中央 '-' の場合のみ
+  if(k3==='-'){
+    Rx = -Rx;
+    Ry = -Ry;
+  }
 
   let X = Lx + Rx;
   let Y = Ly + Ry;
   let D = c * f;
 
-  // 約分
   let g = gcd(Math.abs(X), gcd(Math.abs(Y), D));
   X/=g; Y/=g; D/=g;
 
   answerQ8 = `(${X}x${Y>=0?'+':''}${Y}y)/${D}`;
 
   document.getElementById("problems").innerHTML += `
-  <div class="box">
-    (8)
-    <span class="frac"><span class="top">${a}x ${k1} ${b}y</span><span class="bottom">${c}</span></span>
-    ${k3}
-    <span class="frac"><span class="top">${d}x ${k4} ${e}y</span><span class="bottom">${f}</span></span>
-    <br><br>
-    答え：<input id="a8"><span id="r8"></span>
-  </div>`;
+    <div class="box">
+      (8)
+      <span class="frac"><span class="top">${a}x ${k1} ${b}y</span><span class="bottom">${c}</span></span>
+      ${k3}
+      <span class="frac"><span class="top">${d}x ${k4} ${e}y</span><span class="bottom">${f}</span></span>
+      <br><br>
+      答え：<input id="a8"><span id="r8"></span>
+    </div>`;
 }
   
 function checkQ8(){
