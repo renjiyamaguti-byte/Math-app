@@ -1045,74 +1045,57 @@ let answerQ7 = "";
 
 function generateQ7(){
 
+  //------- 乱数で式生成 -------
   const a = rand(2,9);
-
   const b = rand(2,9);
-
   const r = rand(2,6);
+  const i = Math.random()<0.5 ? 2 : 3; // 2乗か3乗
 
-  const i = Math.random()<0.5 ? 2 : 3;
+  const expL = rand(2,3); // 左 x の指数
+  const expR = rand(2,3); // 右 y の指数
 
-  const expL = rand(2,3); // 左の指数
+  //------- 計算処理 -------
+  const coefNum = a * b;            // 分子の係数
+  const coefDen = Math.pow(r, i);   // 分母に乗る
 
-  const expR = rand(2,3); // 右の指数
-
-  // 左は x に指数、右は y に指数
-
-  const coefNum = a * b;
-
-  const coefDen = Math.pow(r, i);
+  let sign = (i % 2 === 1) ? -1 : 1; // 3乗ならマイナスが付く
+  let top = coefNum * sign;
 
   const xExp = expL + 1 - i;
-
   const yExp = 1 + expR - i;
 
-  // 約分
+  //------- 約分 -------
+  let g = gcd(Math.abs(top), coefDen);
+  let num = top/g;
+  let den = coefDen/g;
 
-  function gcd(x,y){ return y ? gcd(y, x%y) : x; }
+  //------- 出力文字生成 -------
 
-  const g = gcd(coefNum, coefDen);
+  let ans="";
 
-  const num = coefNum / g;
+  if(num===-1) ans+="-";
+  else if(num!==1) ans+=num;
 
-  const den = coefDen / g;
+  if(xExp>0) ans += "x" + (xExp>1?`<sup>${xExp}</sup>`:"");
+  if(yExp>0) ans += "y" + (yExp>1?`<sup>${yExp}</sup>`:"");
+  if(ans===""||ans==="-") ans+="1";
 
-  let ans = "";
+  if(den!==1) ans+="/"+den;
 
-  if(num !== 1) ans += num;
+  answerQ7=ans; // ←保存
 
-  if(xExp > 0) ans += "x" + (xExp>1 ? `<sup>${xExp}</sup>` : "");
-
-  if(yExp > 0) ans += "y" + (yExp>1 ? `<sup>${yExp}</sup>` : "");
-
-  if(ans === "") ans = "1";
-
-  if(den !== 1) ans += "/" + den;
-
-  answerQ7 = ans;
-  
+  //------- HTML出力 -------
   document.getElementById("problems").innerHTML += `
-
-    <div class="box">
-
-      (7)
-
-      ${a}x<sup>${expL}</sup>y
-
-      ÷ (−${r}xy)<sup>${i}</sup>
-
-      × ${b}xy<sup>${expR}</sup>
-
-      <br><br>
-
-      答え：<input id="a7">
-
-      <span id="r7"></span>
-
-    </div>
-
+  <div class="box">
+    (7)
+    ${a}x<sup>${expL}</sup>y
+    ÷ (-${r}xy)<sup>${i}</sup>
+    × ${b}xy<sup>${expR}</sup>
+    <br><br>
+    答え：<input id="a7">
+    <span id="r7"></span>
+  </div>
   `;
-
 }
 
 function checkQ7(){
